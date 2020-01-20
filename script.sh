@@ -10,13 +10,13 @@ cd $BUILD_PATH
 STAG="$(ls StagOS*.zip)"
 size=$(du -sh $STAG | awk '{print $1}')
 
+#Upload to Sourceforge
+echo "Uploading to Sourceforge"
+echo "put $STAG /home/frs/project/team-xtreme/" | sftp ravi9967@frs.sourceforge.net
+
 #Upload to drive
 echo "Uploading To Google Drive"
 fileid=$(gdrive upload ${STAG} -p 1bYCLRWIPfuH7Uf7WT9lk7Vgj9iYhQJll | tail -1 | awk '{print $2}')
-
-#Upload to Sourceforge
-echo "Uploading to Sourceforge"
-echo "put $STAG /home/frs/projects/team-xtreme/" | sftp ravi9967@frs.sourceforge.net
 
 #Send Notifications to channel
 echo "Sending Notifications to group"
